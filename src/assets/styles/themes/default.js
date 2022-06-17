@@ -1,5 +1,6 @@
 export default {
   colors: {
+    normal: { white: '#ffffff', black: '#000000' },
     background: '#f6f5fc',
     primary: {
       lighter: '#E0E3ff',
@@ -9,6 +10,7 @@ export default {
     },
     gray: {
       900: '#222222',
+      400: '#444444',
       200: '#bcbcbc',
       100: '#E5E5E5',
     },
@@ -17,5 +19,13 @@ export default {
       main: '#fc5050',
       dark: '#f63131',
     },
+  },
+  fontSize: {
+    tiny: '8px',
+    small: '12px',
+    big: '24px',
+  },
+  spacing: {
+    borderRadius: '15px',
   },
 };

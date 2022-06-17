@@ -7,7 +7,7 @@ export default function RoutesComponent() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/new" element={<PokemonsList />} />
+      <Route path="/pokemons" element={<PokemonsList />} />
     </Routes>
   );
 }
