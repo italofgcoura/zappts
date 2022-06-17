@@ -2,20 +2,23 @@ import { React, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { PokemonContext } from '../../contexts';
-import { Overlay, Container, Footer } from './styles';
+import { Overlay, Container } from './styles';
+import CardFull from '../CardFull';
 
 export default function Modal() {
-  const { setShowPokemonInfo } = useContext(PokemonContext);
+  const { setSelectedPokemon,
+    setShowPokemonInfo } = useContext(PokemonContext);
+
+  const handleCloseModal = () => {
+    setShowPokemonInfo(false);
+    setSelectedPokemon({});
+  };
 
   return ReactDOM.createPortal(
     <Overlay>
       <Container>
-        <h1>Titulo do modal</h1>
-        <p>corpo do modal</p>
-        <Footer>
-          <button type="button" className="cancel-button">Cancelar</button>
-          <button type="button" onClick={() => setShowPokemonInfo(false)}>CLOSE</button>
-        </Footer>
+        <CardFull />
+        <button type="button" onClick={() => handleCloseModal()}>close</button>
       </Container>
     </Overlay>,
     document.getElementById('pokemonBanner'),

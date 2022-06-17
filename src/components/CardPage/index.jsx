@@ -30,13 +30,13 @@ function CardPage({ color, name, pokedex, pokemonForms, image, pokemon }) {
       : pokemonsColors.gray,
   };
 
-  const handleShowPokemonInfo = () => {
+  const handleSelectPokemon = () => {
     setShowPokemonInfo(true);
     setSelectedPokemon(pokemon);
   };
 
   return (
-    <CardContainer style={cardStyle} onClick={() => handleShowPokemonInfo()}>
+    <CardContainer style={cardStyle} onClick={() => handleSelectPokemon()}>
       <InnerCardContainer>
         <small>{name}</small>
         <span className="pokedex">{pokedex}</span>
