@@ -3,11 +3,14 @@ import styled from 'styled-components';
 export const CardContainer = styled.div`
 max-height: 110px;
 height: 110px;
-max-width: 160px;
-width: 160px;
 border-radius: ${({ theme }) => theme.spacing.borderRadius};
 position: relative;
 overflow: hidden;
+transition: 0.2s;
+cursor: pointer;
+&:hover{
+  box-shadow: 0px 0px 6px ${({ color }) => (color !== 'white' ? color : '#000000')};
+}
 
 .pokedex{
   position: absolute;
@@ -34,36 +37,6 @@ small{
 
   font-weight: bold;
 }
-
-.pokemonFormType{
-  font-size: ${({ theme }) => theme.fontSize.tiny};
-  padding: 4px;
-  border-radius: ${({ theme }) => theme.spacing.borderRadius};
-  opacity: 0.8;
-  margin-top: 4px;
-  width: 50px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  &:before{
-  position: absolute;
-  content:'';
-  width: 100%;
-  height: 100%;
-  background: ${({ theme }) => theme.colors.normal.white};
-  opacity: 0.6;
-  z-index: -1;
-}
-  p{
-  color: ${({ theme }) => theme.colors.normal.white};
-  font-weight: bold;
-  z-index:99;
-  text-transform: capitalize;
-  }
-}
-
 `;
 
 export const PokemonImage = styled.div`

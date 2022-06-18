@@ -2,32 +2,24 @@ import React, { useContext } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { ThemeContext } from 'styled-components';
 import { PokemonContext } from '../../contexts/Pokemon';
 
 import { CardContainer, PokemonImage, InnerCardContainer } from './styles';
 
-const pokemonsColors = {
-  black: '#393332',
-  blue: '#4676A4',
-  brown: 'rgba(206,128,131)',
-  gray: '#bcbcbc',
-  green: '#46A487',
-  pink: '#F2CDD6',
-  purple: 'rgba(164,153,193)',
-  red: '#FB6C6C',
-  white: '#ffffff',
-  yellow: '#FFCE4B',
-};
+import Type from '../Type';
 
 // eslint-disable-next-line react/prop-types
 function CardPage({ color, name, pokedex, pokemonForms, image, pokemon }) {
+  const { colors } = useContext(ThemeContext);
+
   const { setSelectedPokemon,
     setShowPokemonInfo } = useContext(PokemonContext);
 
   const cardStyle = {
-    backgroundColor: pokemonsColors[color],
-    color: color !== 'white' ? pokemonsColors.white
-      : pokemonsColors.gray,
+    backgroundColor: colors.pokemonsColors[color],
+    color: color !== 'white' ? colors.pokemonsColors.white
+      : colors.pokemonsColors.gray,
   };
 
   const handleSelectPokemon = () => {
@@ -36,16 +28,14 @@ function CardPage({ color, name, pokedex, pokemonForms, image, pokemon }) {
   };
 
   return (
-    <CardContainer style={cardStyle} onClick={() => handleSelectPokemon()}>
+    <CardContainer style={cardStyle} onClick={() => handleSelectPokemon()} color={color}>
       <InnerCardContainer>
         <small>{name}</small>
         <span className="pokedex">{pokedex}</span>
         {pokemonForms.map((form) => (
-          <div
-            className="pokemonFormType"
-          >
-            <p>{form.type.name}</p>
-          </div>
+
+          <Type name={form.type.name} />
+
         ))}
         <PokemonImage>
           <img src={image} alt="" />

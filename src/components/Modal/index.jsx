@@ -1,34 +1,19 @@
-import { React, useContext } from 'react';
-import PropTypes from 'prop-types';
+import { React } from 'react';
+
 import ReactDOM from 'react-dom';
-import { PokemonContext } from '../../contexts';
-import { Overlay, Container } from './styles';
+
+import { Overlay } from './styles';
 import CardFull from '../CardFull';
 
-export default function Modal() {
-  const { setSelectedPokemon,
-    setShowPokemonInfo } = useContext(PokemonContext);
-
-  const handleCloseModal = () => {
-    setShowPokemonInfo(false);
-    setSelectedPokemon({});
-  };
-
+export default function Modal({ isError, children }) {
   return ReactDOM.createPortal(
     <Overlay>
-      <Container>
-        <CardFull />
-        <button type="button" onClick={() => handleCloseModal()}>close</button>
-      </Container>
+
+      {isError && children}
+
+      {!isError && <CardFull />}
+
     </Overlay>,
     document.getElementById('pokemonBanner'),
   );
 }
-
-Modal.propTypes = {
-  danger: PropTypes.bool,
-};
-
-Modal.defaultProps = {
-  danger: false,
-};
