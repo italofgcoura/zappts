@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 
 import { ThemeContext } from 'styled-components';
 import { PokemonContext } from '../../contexts';
@@ -26,14 +26,14 @@ function CardFull() {
 
   const transformToMeters = (weight) => (weight * 0.3048).toFixed(1);
 
-  const generateRandomNumber = () => {
+  const generateRandomNumber = useCallback(() => {
     const ataque = Math.floor(Math.random() * 100);
     const defesa = Math.floor(Math.random() * 100);
     const vlAtaque = Math.floor(Math.random() * 100);
     const total = ataque + defesa + vlAtaque;
 
     return { ataque, defesa, vlAtaque, total };
-  };
+  }, []);
 
   // const generateColor = () => { };
 

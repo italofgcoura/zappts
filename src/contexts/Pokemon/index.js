@@ -68,7 +68,7 @@ function Pokemon({ children }) {
 
   useEffect(() => {
     loadArrayColors();
-  }, [loadArrayColors]);
+  }, []);
 
   // const contextValues = useMemo(() => ({
   //   pokemonColors: pokemonColors,

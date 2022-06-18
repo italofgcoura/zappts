@@ -64,7 +64,7 @@ function PokemonsList() {
     } else if (filteredPokemons?.length > 0 && pokemonColors?.length > 0) {
       loadPokemonsInfo(filteredPokemons);
     }
-  }, [filteredPokemons, pokemonColors, loadPokemonsInfo]);
+  }, [filteredPokemons, pokemonColors]);
 
   if (filteredPokemons?.length === 0) {
     return (
