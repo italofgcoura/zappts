@@ -10,7 +10,9 @@ function Header() {
   const url = window.location.href.toString();
   return (
     <MenuContainer>
-      <Logo />
+      <NavLink to="/">
+        <Logo />
+      </NavLink>
       <Menu>
         <li>
           <NavLink

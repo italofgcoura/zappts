@@ -7,8 +7,6 @@ import ProgressBar from './ProgressBar';
 import { AtaqueValuesContainer } from './styles';
 
 function AtaqueValues({ type, value, color, maxValue }) {
-  console.log('type, value, color', type, value, color);
-
   return (
     <AtaqueValuesContainer>
       <span>{type}</span>

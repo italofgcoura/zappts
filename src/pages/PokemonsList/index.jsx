@@ -14,8 +14,6 @@ import { ReactComponent as SadFace } from '../../assets/images/sentiment_dissati
 
 import PaginationButton from './PaginationButtons';
 
-import Loader from '../../components/Loader';
-
 import Modal from '../../components/Modal';
 
 function PokemonsList() {
@@ -23,7 +21,6 @@ function PokemonsList() {
     filteredPokemons,
     pokemonColors,
     showPokemonInfo,
-    isLoadingPokemons,
     loadPokemons,
   } = useContext(PokemonContext);
 
@@ -33,7 +30,6 @@ function PokemonsList() {
 
   const loadPokemonsPage = (arrayPokemons) => {
     const tempPokemons = arrayPokemons;
-
     tempPokemons.forEach((pok) => {
       // eslint-disable-next-line no-restricted-syntax
       for (const item of pokemonColors) {
@@ -44,7 +40,6 @@ function PokemonsList() {
         }
       }
     });
-
     setPokemonsPage(tempPokemons);
   };
 
@@ -69,11 +64,7 @@ function PokemonsList() {
     } else if (filteredPokemons?.length > 0 && pokemonColors?.length > 0) {
       loadPokemonsInfo(filteredPokemons);
     }
-  }, [filteredPokemons, pokemonColors]);
-
-  if (isLoadingPokemons) {
-    return <Loader loading={isLoadingPokemons} />;
-  }
+  }, [filteredPokemons, pokemonColors, loadPokemonsInfo]);
 
   if (filteredPokemons?.length === 0) {
     return (

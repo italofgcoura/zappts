@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import { api } from '../../httpClient';
@@ -22,19 +22,15 @@ function Pokemon({ children }) {
 
   const [atualPage, setAtualPage] = useState(0);
 
-  const [isLoadingPokemons, setIsLoadingPokemons] = useState(true);
-
   const loadPokemons = async (offset) => {
     const temp = await getPokemonsByIndex(offset);
-
-    // await api.get(`/pokemon/?limit=18&offset=${offset}`);
-
     setPokemons(temp.data.results);
     setFilteredPokemons(temp.data.results);
-    setIsLoadingPokemons(false);
   };
 
-  useEffect(() => { loadPokemons(atualPage); }, [atualPage]);
+  useEffect(() => {
+    loadPokemons(atualPage);
+  }, [atualPage]);
 
   const loadAllPokemons = async () => {
     const temp = await getAllPokemons();
@@ -61,23 +57,18 @@ function Pokemon({ children }) {
     loadPokemonsByColors(temp.data.results);
   };
 
-  const loadPokemonByName = async (name) => {
-    setIsLoadingPokemons(true);
+  const loadPokemonByName = useCallback(async (name) => {
     try {
       const temp = await getPokemonByName(name);
-      setIsLoadingPokemons(false);
       setFilteredPokemons([temp.data]);
     } catch (error) {
-      setIsLoadingPokemons(false);
       setFilteredPokemons([]);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadArrayColors();
-  }, []);
-
-  console.log('filtered', filteredPokemons);
+  }, [loadArrayColors]);
 
   // const contextValues = useMemo(() => ({
   //   pokemonColors: pokemonColors,
@@ -111,7 +102,6 @@ function Pokemon({ children }) {
       loadPokemons,
       setAtualPage,
       atualPage,
-      isLoadingPokemons,
     }}
     >
       {children}
